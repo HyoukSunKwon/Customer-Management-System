@@ -15,7 +15,7 @@ import { render } from '@testing-library/react';
 const styles = theme => ({
   root: {
     width: '100%',
-    marginTop: theme.spacing.unit * 3,
+    marginTop: theme.spacing(3),
     overflowX: "auto"
   },
   table: {
@@ -26,7 +26,7 @@ const styles = theme => ({
     color: theme.palette.common.white,
   },
   progress: {
-    margin: theme.spacing.unit * 2
+    margin: theme.spacing(2)
   }
 })
 

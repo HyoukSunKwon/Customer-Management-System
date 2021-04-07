@@ -28,10 +28,6 @@ const styles = theme => ({
   },
   progress: {
     margin: theme.spacing(2)
-  },
-  image: {
-    width:"64", 
-    height:"64"
   }
 })
 
@@ -86,11 +82,12 @@ constructor(props){
               <TableCell className= { classes.head }> Birthday </TableCell>
               <TableCell className= { classes.head }> Gender </TableCell>
               <TableCell className= { classes.head }> Job </TableCell>
+              <TableCell className= { classes.head }> Setting </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
           { this.state.customers ? this.state.customers.map( c => { return (
-          <Customer  key= { c.id } id={ c.id } image={ c.image } name={ c.name } birthday={ c.birthday } gender={ c.gender} job ={ c.job } /> )})
+          <Customer stateRefresh={this.stateRefresh} key= { c.id } id={ c.id } image={ c.image } name={ c.name } birthday={ c.birthday } gender={ c.gender} job ={ c.job } /> )})
             : 
           <TableRow>
             <TableCell colSpan="6" align="center">

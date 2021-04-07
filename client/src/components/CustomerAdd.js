@@ -50,7 +50,6 @@ class CustomerAdd extends React.Component {
         const url = '/api/customers';
         const formData = new FormData();
         formData.append('image', this.state.file);
-        console.log(this.state.file);
         formData.append('name', this.state.userName);
         formData.append('birthday', this.state.birthday);
         formData.append('gender', this.state.gender);
@@ -68,7 +67,7 @@ class CustomerAdd extends React.Component {
         return(
             <form onSubmit={this.handleFormSubmit}>
                 <h1>Add Customer</h1>
-                Image: <input type="file" name="file" file={this.state.file} width="64" heght="64" value={this.state.fileName} onChange={this.handleFilechange}/> <br/>
+                Image: <input type="file" name="file" file={this.state.file} value={this.state.fileName} onChange={this.handleFilechange} /> <br/>
                 Name: <input type="text" name="userName" value={this.state.userName} onChange={this.handleValueChange} /> <br />
                 Birthday: <input type="text" name="birthday" value={this.state.birthday} onChange={this.handleValueChange} /> <br />
                 Gender: <input type="text"  name="gender" value={this.state.gender} onChange={this.handleValueChange} /> <br />

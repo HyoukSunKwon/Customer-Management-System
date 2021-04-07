@@ -26,7 +26,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.get('/api/customers' , (req, res) =>{
-   let query = 'Select * from customer';
+   let query = 'Select * from customer where isDeleted = 0';
   connection.query(query, function(error, result){
     if(error) {
       console.log("error here happen", error);
@@ -38,7 +38,7 @@ app.get('/api/customers' , (req, res) =>{
 
 app.use('/image', express.static('./upload'));
 app.post('/api/customers', upload.single('image'), (req, res)=>{
-  let sql='insert into customer values (null,?,?,?,?,?)';
+  let sql='insert into customer values (null,?,?,?,?,?, now(), 0)';
   let image = '/image/' + req.file.filename;
   let name = req.body.name;
   let birthday = req.body.birthday;
@@ -57,5 +57,13 @@ app.post('/api/customers', upload.single('image'), (req, res)=>{
   });
 });
 
+
+app.delete('/api/customers/:id', (req,res) => {
+  let sql = 'update customer set isDeleted = 1 where id = ? ';
+  let params = [req.params.id];
+  connection.query(sql, params, (err, rows, fields) => {
+    res.send(rows);
+  })
+})
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
